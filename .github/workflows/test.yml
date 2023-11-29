@@ -1,11 +1,12 @@
+name: Run tests
 on:
   workflow_call:
 
 jobs:
-  pass-secret-to-action:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Use a repo or org secret from the calling workflow.
+      - name: Show PR title and consume secret from the caller
         run: |
           echo ${{ github.event.pull_request.title }}
           echo ${{ secrets.FLAG }}
