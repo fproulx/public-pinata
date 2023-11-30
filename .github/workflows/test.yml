@@ -1,12 +1,33 @@
 name: Run tests
 on:
   workflow_call:
+  
+permissions: {}
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+    
     steps:
-      - name: Show PR title and consume secret from the caller
+      - uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+        if: "contains(github.event_name, 'pull_request')"
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
+
+      - name: checkout from push event
+        if: github.event_name == 'push'
+        uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
+      
+      - name: Show PR title
         run: |
           echo ${{ github.event.pull_request.title }}
-          echo ${{ secrets.FLAG }}
+
+      - uses: actions/setup-go@93397bea11091df50f3d7e59dc26a7711a8bcfbe # v4.1.0
+        with:
+          go-version: '1.20'
+          check-latest: true
+
+      - run: go generate ./...
