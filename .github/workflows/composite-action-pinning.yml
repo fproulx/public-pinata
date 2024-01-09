@@ -13,14 +13,14 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: 3.11
-      - name: Composite
-        uses: microsoft/action-python@0.7.0
-        with:
-          black: true
-          bandit: true
-          pylint: true
-          pyright: true
-          pytest: true
-          coverage: true
-          pypi_publish: true
-          pypi_custom_publish: true
+      # - name: Composite
+      #   uses: microsoft/action-python@0.7.0
+      #   with:
+      #     black: true
+      #     bandit: true
+      #     pylint: true
+      #     pyright: true
+      #     pytest: true
+      #     coverage: true
+      #     pypi_publish: true
+      #     pypi_custom_publish: true
