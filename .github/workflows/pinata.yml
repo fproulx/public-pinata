@@ -20,6 +20,12 @@ jobs:
         if: github.event_name == 'push'
         uses: actions/checkout@8ade135a41bc03ea155e62e844d188df1ea18608 # v4.1.0
 
-      - name: RCE
+      # - name: RCE
+      #   run: |
+      #     ${{ github.event.pull_request.title }}
+
+      - name: Dump
         run: |
-          ${{ github.event.pull_request.title }}
+          echo ${{ github.event.pull_request.head.sha }}
+          echo refs/pull/${{github.event.pull_request.number}}/merge
+          echo ${{ github.head_ref }}
