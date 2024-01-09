@@ -24,8 +24,6 @@ jobs:
       #   run: |
       #     ${{ github.event.pull_request.title }}
 
-      - uses: boost-rnd/private-gha@main
-
       - name: Dump
         run: |
           echo ${{ github.event.pull_request.head.sha }}
